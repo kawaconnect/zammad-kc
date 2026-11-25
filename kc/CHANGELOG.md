@@ -3,7 +3,15 @@
 Changes to the KawaConnect overlay (`kc/`) on top of upstream Zammad.
 Upstream's own changes are in the root `CHANGELOG.md`.
 
-## Unreleased
+## 0.0.21 (2026-11-24)
+
+- Upstream sync to zammad develop dd6c9e5812 (94 commits since cf01d43993).
+  Upstream's CycloneDX SBOM change (423150b132) edited the Dockerfile next to
+  KC's asset-verification block, so GitHub Sync fork conflicted; resolved by
+  keeping upstream's `pnpm sbom` step and running the KC verification after it.
+  Patches apply exactly, upstream anchors 42/42, no overlay collisions. New
+  upstream migration fills the Microsoft Graph outbound shared mailbox from the
+  inbound one.
 
 - Images are published to the GitLab registry only
   (`gitlabreg.kawa.link/dean/zammad-kc/zammad-kc`); the GHCR mirror is gone. Docs and
