@@ -133,8 +133,8 @@ GEM
     autoprefixer-rails (10.6.1.0)
       execjs (~> 2)
     aws-eventstream (1.4.1)
-    aws-partitions (1.1307.0)
-    aws-sdk-core (3.269.0)
+    aws-partitions (1.1310.0)
+    aws-sdk-core (3.271.1)
       aws-eventstream (~> 1, >= 1.4.1)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -143,10 +143,10 @@ GEM
       jmespath (~> 1, >= 1.6.1)
       logger
       rexml (~> 3.4, >= 3.4.2)
-    aws-sdk-kms (1.144.0)
-      aws-sdk-core (~> 3, >= 3.269.0)
+    aws-sdk-kms (1.145.0)
+      aws-sdk-core (~> 3, >= 3.270.0)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.244.0)
+    aws-sdk-s3 (1.245.1)
       aws-sdk-core (~> 3, >= 3.269.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
@@ -164,9 +164,9 @@ GEM
     biz (1.8.2)
       clavius (~> 1.0)
       tzinfo
-    bootsnap (1.26.1)
+    bootsnap (1.26.2)
       msgpack (~> 1.5)
-    brakeman (8.1.0)
+    brakeman (8.1.1)
       racc
     browser (6.2.0)
     builder (3.3.0)
@@ -208,7 +208,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.3.8)
-    connection_pool (3.0.2)
+    connection_pool (3.0.3)
     console (1.38.0)
       fiber-annotation
       fiber-local (~> 1.1)
@@ -222,7 +222,7 @@ GEM
     crass (1.0.8)
     csv (3.3.7)
     daemons (1.4.1)
-    dalli (5.3.3)
+    dalli (5.4.0)
       logger
     dartsass-rails (0.5.1)
       railties (>= 6.0.0)
@@ -255,7 +255,7 @@ GEM
       dry-types (~> 1.8, >= 1.8.2)
       ice_nine (~> 0.11)
       zeitwerk (~> 2.6)
-    dry-types (1.9.1)
+    dry-types (1.9.2)
       bigdecimal (>= 3.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0)
@@ -278,7 +278,7 @@ GEM
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
-    email_address (0.2.9)
+    email_address (0.2.10)
       base64
       simpleidn
     erb (6.0.7)
@@ -335,7 +335,7 @@ GEM
     google-protobuf (4.36.2-x86_64-linux-gnu)
       bigdecimal
       rake (~> 13.3)
-    graphql (2.6.15)
+    graphql (2.6.16)
       base64
       fiber-storage
       logger
@@ -345,11 +345,11 @@ GEM
     graphql-fragment_cache (1.22.3)
       graphql (>= 2.1.4)
     hana (1.3.7)
-    hashdiff (1.2.2)
+    hashdiff (1.3.0)
     hashie (5.2.0)
       logger
-    hiredis-client (0.30.1)
-      redis-client (= 0.30.1)
+    hiredis-client (0.31.0)
+      redis-client (= 0.31.0)
     htmlentities (4.4.2)
     http_parser.rb (0.8.1)
     httpclient (2.10.0)
@@ -426,7 +426,7 @@ GEM
       net-smtp
     marcel (1.2.1)
     matrix (0.4.3)
-    mcp (1.10.0)
+    mcp (1.11.0)
       json_schemer (>= 2.4)
     messagebird-rest (5.0.0)
       jwt (< 4)
@@ -568,7 +568,7 @@ GEM
       iniparse (~> 1.4)
       rexml (>= 3.4.2)
     parallel (2.3.0)
-    parser (3.3.13.0)
+    parser (3.3.14.0)
       ast (~> 2.4.1)
       racc
     pg (1.7.0)
@@ -606,7 +606,7 @@ GEM
     pry-theme (1.3.1)
       coderay (~> 1.1)
     public_suffix (7.0.5)
-    puma (8.0.3)
+    puma (8.0.4)
       nio4r (~> 2.0)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
@@ -626,7 +626,7 @@ GEM
       faraday-follow_redirects
       json-jwt (>= 1.11.0)
       rack (>= 2.1.0)
-    rack-protection (4.2.1)
+    rack-protection (4.2.2)
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
       rack (>= 3.0.0, < 4)
@@ -686,11 +686,11 @@ GEM
       tsort
     readline (0.0.4)
       reline
-    redis (6.0.0)
-      redis-client (= 0.30.1)
-    redis-client (0.30.1)
+    redis (6.1.0)
+      redis-client (= 0.31.0)
+    redis-client (0.31.0)
       connection_pool
-    regexp_parser (2.13.1)
+    regexp_parser (2.13.4)
     reline (0.7.0)
       io-console (~> 0.5)
     rexml (3.4.4)
@@ -717,7 +717,7 @@ GEM
     rspec_junit_formatter (0.8.0)
       rspec-core (>= 3.13, < 4)
     rszr (1.5.1)
-    rubocop (1.92.2)
+    rubocop (1.92.3)
       json (>= 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -832,7 +832,7 @@ GEM
       logger
     systemu (2.6.5)
     tcr (0.4.1)
-    telegram-bot-ruby (2.8.1)
+    telegram-bot-ruby (2.10.0)
       dry-struct (~> 1.6)
       faraday (~> 2.0)
       faraday-multipart (~> 1.0)
@@ -847,7 +847,7 @@ GEM
       openssl (> 2.0)
       openssl-signature_algorithm (~> 1.0)
     tsort (0.2.0)
-    twilio-ruby (7.13.0)
+    twilio-ruby (7.13.1)
       faraday (>= 2.0, < 3.0)
       jwt (>= 1.5, < 4.0)
       nokogiri (>= 1.6, < 2.0)
@@ -903,7 +903,7 @@ GEM
       activesupport
       faraday (~> 2.0)
       faraday-follow_redirects
-    webmock (3.34.0)
+    webmock (3.38.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)

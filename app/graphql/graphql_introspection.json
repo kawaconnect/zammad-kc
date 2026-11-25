@@ -4299,6 +4299,18 @@
               "deprecationReason": null
             },
             {
+              "name": "refused",
+              "description": "Did the mail server refuse the test email of the usual check? A check with a test address may follow.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "success",
               "description": "Was the operation successful?",
               "args": [],
@@ -9327,6 +9339,16 @@
                 }
               },
               "defaultValue": null
+            },
+            {
+              "name": "knownOptionSignatures",
+              "description": "Signatures of the option lists the form holds already, by field name. A field whose list still has the same signature gets no options in the result.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "JSON",
+                "ofType": null
+              },
+              "defaultValue": null
             }
           ],
           "interfaces": null,
@@ -9414,6 +9436,22 @@
             {
               "name": "flags",
               "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "JSON",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "optionSignatures",
+              "description": "Signature of the current option list of a field, by field name. It is returned also when the options are not, because the form holds the list with this signature already.",
               "args": [],
               "type": {
                 "kind": "NON_NULL",
@@ -15612,11 +15650,11 @@
             },
             {
               "name": "channelEmailSetNotificationConfiguration",
-              "description": "Set confioguration for sending system notification emails",
+              "description": "Check the configuration for sending system notification emails with a test email and save it",
               "args": [
                 {
                   "name": "outboundConfiguration",
-                  "description": "Configuration to validate",
+                  "description": "Configuration to check and save",
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
@@ -15625,6 +15663,16 @@
                       "name": "ChannelEmailOutboundConfigurationInput",
                       "ofType": null
                     }
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "testAddress",
+                  "description": "Recipient of the test email for a mail server which only delivers to internal recipients",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
                   },
                   "defaultValue": null
                 }
@@ -33083,6 +33131,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "TicketArticle",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "refetchArticles",
+              "description": "The list of articles changed as a whole and needs to be loaded again",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               },
               "isDeprecated": false,

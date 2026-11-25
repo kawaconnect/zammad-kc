@@ -8,6 +8,9 @@ class SearchIndexBackend
   SUPPORTED_ES_VERSION_MINIMUM   = '8.15.0'.freeze
   SUPPORTED_ES_VERSION_LESS_THAN = '10'.freeze
 
+  # How far a search may page by default: Elasticsearch refuses a page that ends beyond an index's window.
+  MAX_RESULT_WINDOW = 1_000_000
+
   STORE_NAMES           = %w[preferences data].freeze
   STORE_NAMES_PER_MODEL = {
     CoreWorkflow     => %w[condition_selected condition_saved perform],
@@ -886,7 +889,7 @@ refreshes all indexes to make previous request data visible in future requests
 helper method for making HTTP calls
 
 @param url [String] url
-@option params [Hash] :data is a payload hash
+@option params [Hash, String] :data is a payload hash, or a String to send as it is (line based bulk format)
 @option params [Symbol] :method is a HTTP method
 @option params [Symbol] :request_type selects the timeout profile; use `:reindex` for long-running reindex operations and `:inline` for index writes inside request paths
 
@@ -895,7 +898,7 @@ helper method for making HTTP calls
 =end
   def self.make_request(url, data: {}, method: :get, request_type: :default)
     Rails.logger.debug { "# curl -X #{method} \"#{url}\" " }
-    Rails.logger.debug { "-d '#{data.to_json}'" } if data.present?
+    Rails.logger.debug { "-d '#{data.is_a?(String) ? data : data.to_json}'" } if data.present?
 
     read_timeout, total_timeout = timeouts_for(request_type)
 
@@ -910,6 +913,12 @@ helper method for making HTTP calls
       password:          Setting.get('es_password'),
       verify_ssl:        Setting.get('es_ssl_verify'),
     }
+
+    if data.is_a?(String)
+      options[:send_as_raw_body]        = data
+      options[:do_not_follow_redirects] = true
+      data = {}
+    end
 
     response = UserAgent.send(method, url, data, options)
 
@@ -1094,7 +1103,7 @@ helper method for making HTTP calls and raising error if response was not succes
   def self.default_model_settings
     {
       'index.mapping.total_fields.limit'    => 2000,
-      'index.max_result_window'             => 1_000_000,
+      'index.max_result_window'             => MAX_RESULT_WINDOW,
       'analysis.analyzer.default.type'      => 'custom',
       'analysis.analyzer.default.tokenizer' => 'standard',
       'analysis.analyzer.default.filter'    => ['lowercase'],
@@ -1105,6 +1114,11 @@ helper method for making HTTP calls and raising error if response was not succes
     settings = default_model_settings
     settings['analysis.analyzer.default.filter'] |= ['asciifolding'] if Setting.get('es_asciifolding')
     settings.merge(Setting.get('es_model_settings')[model.name] || {})
+  end
+
+  # @return [Integer] how far a search of the model's index may page, as configured for it
+  def self.max_result_window(model)
+    model_settings(model)['index.max_result_window'].to_i
   end
 
   def self.all_settings
